@@ -1,0 +1,123 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --board "/ti/boards/CC3220SF_LAUNCHXL" --product "simplelink_cc32xx_sdk@4_10_00_07"
+ * @versions {"data":"2020021217","timestamp":"2020021217","tool":"1.4.0+1234","templates":"2020021217"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/drivers/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const GPIO4  = GPIO.addInstance();
+const GPIO5  = GPIO.addInstance();
+const GPIO6  = GPIO.addInstance();
+const GPIO7  = GPIO.addInstance();
+const GPIO8  = GPIO.addInstance();
+const GPIO9  = GPIO.addInstance();
+const I2C    = scripting.addModule("/ti/drivers/I2C", {}, false);
+const I2C1   = I2C.addInstance();
+const RTOS   = scripting.addModule("/ti/drivers/RTOS");
+const Timer  = scripting.addModule("/ti/drivers/Timer", {}, false);
+const Timer1 = Timer.addInstance();
+const Timer2 = Timer.addInstance();
+const UART   = scripting.addModule("/ti/drivers/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.pull            = "Pull Down";
+GPIO1.$name           = "US1_TRIGGER";
+GPIO1.mode            = "Output";
+GPIO1.gpioPin.$assign = "boosterpack.15";
+
+GPIO2.callbackFunction = "";
+GPIO2.$name            = "US2_TRIGGER";
+GPIO2.mode             = "Output";
+GPIO2.pull             = "Pull Down";
+GPIO2.gpioPin.$assign  = "boosterpack.13";
+
+GPIO3.callbackFunction = "";
+GPIO3.$name            = "US3_TRIGGER";
+GPIO3.mode             = "Output";
+GPIO3.pull             = "Pull Down";
+GPIO3.gpioPin.$assign  = "boosterpack.18";
+
+GPIO4.callbackFunction = "";
+GPIO4.$name            = "US4_TRIGGER";
+GPIO4.mode             = "Output";
+GPIO4.pull             = "Pull Down";
+GPIO4.gpioPin.$assign  = "boosterpack.19";
+
+GPIO5.interruptTrigger = "Both Edges";
+GPIO5.pull             = "Pull Down";
+GPIO5.callbackFunction = "getTime";
+GPIO5.$name            = "US4_ECHO";
+GPIO5.gpioPin.$assign  = "boosterpack.28";
+
+GPIO6.$name            = "US2_ECHO";
+GPIO6.pull             = "Pull Down";
+GPIO6.interruptTrigger = "Both Edges";
+GPIO6.callbackFunction = "getTime";
+GPIO6.gpioPin.$assign  = "boosterpack.5";
+
+GPIO7.$name            = "US3_ECHO";
+GPIO7.pull             = "Pull Down";
+GPIO7.interruptTrigger = "Both Edges";
+GPIO7.callbackFunction = "getTime";
+GPIO7.gpioPin.$assign  = "boosterpack.8";
+
+GPIO8.$name            = "US1_ECHO";
+GPIO8.interruptTrigger = "Both Edges";
+GPIO8.pull             = "Pull Down";
+GPIO8.callbackFunction = "getTime";
+GPIO8.gpioPin.$assign  = "boosterpack.4";
+
+GPIO9.$name            = "LIMIT_SWITCH";
+GPIO9.callbackFunction = "";
+GPIO9.pull             = "Pull Up";
+GPIO9.gpioPin.$assign  = "boosterpack.27";
+
+I2C1.$name              = "CONFIG_I2C_0";
+I2C1.addressChecks      = "Warn";
+I2C1.speedChecks        = "Warn";
+I2C1.maxBitRate         = 100;
+I2C1.i2c.$name          = "MyI2C1";
+I2C1.i2c.$assign        = "I2C0";
+I2C1.i2c.sdaPin.$assign = "boosterpack.14";
+I2C1.i2c.sclPin.$assign = "boosterpack.7";
+
+const Power          = scripting.addModule("/ti/drivers/Power", {}, false);
+Power.parkPins.$name = "ti_drivers_power_PowerCC32XXPins0";
+
+RTOS.name = "FreeRTOS";
+
+Timer1.$name         = "CONFIG_TIMER_0";
+Timer1.timerType     = "32 Bits";
+Timer1.timer.$name   = "MyTimer1";
+Timer1.timer.$assign = "Timer0";
+
+Timer2.$name       = "CONFIG_TIMER_1";
+Timer2.timerType   = "32 Bits";
+Timer2.timer.$name = "MyTimer1";
+
+UART1.$name      = "CONFIG_UART_0";
+UART1.$hardware  = system.deviceData.board.components.XDS110UART;
+UART1.useDMA     = true;
+UART1.uart.$name = "MyUART1";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+Timer2.timer.$suggestSolution            = "Timer1";
+UART1.uart.$suggestSolution              = "UART0";
+UART1.uart.txPin.$suggestSolution        = "55";
+UART1.uart.rxPin.$suggestSolution        = "57";
+UART1.uart.txDmaChannel.$suggestSolution = "UDMA_CH9";
+UART1.uart.rxDmaChannel.$suggestSolution = "UDMA_CH8";
