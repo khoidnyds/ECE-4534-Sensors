@@ -32,16 +32,6 @@ timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFami
 timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
 timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
 timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h
-timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
-timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
-timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/PWM.h
-timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h
-timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h
-timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h
-timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h
-timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h
-timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h
-timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h
 
 ../timerUS.c: 
 ../timerUS.h: 
@@ -75,13 +65,3 @@ C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h:
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/PWM.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h: 

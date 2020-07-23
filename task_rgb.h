@@ -7,9 +7,7 @@
 
 #ifndef TASK_RGB_H_
 #define TASK_RGB_H_
-#include <unistd.h>
-#include <stdint.h>
-#include <stddef.h>
+
 #include <ti/drivers/I2C.h>
 #include <ti/drivers/GPIO.h>
 #include "ti_drivers_config.h"
@@ -89,7 +87,7 @@ typedef enum {
 } tcs34725Gain_t;
 
 void* rgbTask(void *arg0);
-//void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success);
+void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success);
 void initSwitch();
 
 #endif /* TASK_RGB_H_ */

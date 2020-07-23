@@ -104,6 +104,8 @@ extern const uint_least8_t          CONFIG_TIMER_0_CONST;
 #define CONFIG_TIMER_0              0
 extern const uint_least8_t          CONFIG_TIMER_1_CONST;
 #define CONFIG_TIMER_1              1
+extern const uint_least8_t          CONFIG_TIMER_2_CONST;
+#define CONFIG_TIMER_2              2
 
 /*
  *  ======== UART ========

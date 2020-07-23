@@ -8,92 +8,103 @@
 #include <task_rgb.h>
 
 void* rgbTask(void *arg0){
-    Message("\r\nStarting rgbTask");
+    //Message("\r\nStarting rgbTask");
 
-//    initSwitch();
-//    I2C_init();
-//    I2C_Handle i2c;
-//    I2C_Params i2cParams;
-//    I2C_Transaction i2cTransaction;
-//
-//    I2C_Params_init(&i2cParams);
-//    i2cParams.bitRate = I2C_100kHz;
-//    i2cParams.transferMode = I2C_MODE_CALLBACK;
-//    i2cParams.transferCallbackFxn = i2cCallback;
-//
-//    i2c = I2C_open(CONFIG_I2C_0, &i2cParams);
-//    if (!i2c) {
-//        Message("\r\nI2C open failed");
-//        while(1);
-//    }
-//
-//
-//    uint8_t transmit_size = 1;
-//    size_t txBuffer[transmit_size];
-//    int i;
-//    for(i=0;i<transmit_size;i++){
-//        txBuffer[i] = 0;
-//    }
-//    uint8_t receive_size = 1;
-//    size_t rxBuffer[receive_size];
-//    for(i=0;i<receive_size;i++){
-//        rxBuffer[i] = 0;
-//    }
-//
-//
-//    i2cTransaction.writeBuf   = txBuffer;
-//    i2cTransaction.writeCount = transmit_size;
-//    i2cTransaction.readBuf    = rxBuffer;
-//    i2cTransaction.readCount  = receive_size;
-//    i2cTransaction.slaveAddress = TCS34725_ADDRESS;
-//
-//
-//    //check I2C connection
-//    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ID;
-//    int rect = I2C_transfer(i2c, &i2cTransaction);
-//
-//
-//    while(1){
-//        msgTriggerRGBSwitch newTriggerRGBSwitch;
-//        receiveMsgFromQueueTriggerRGBSwitch(&newTriggerRGBSwitch);
-//        if(newTriggerRGBSwitch.triggerRGBSwitch){
-//            Message("Trigger message received");
-//        }
-//
-//
-//
-//        // Send msgSwitch to queue
-//        msgSwitch newMsgSwitch;
-//        newMsgSwitch.type = limitSwitch;
-//        if(GPIO_read(LIMIT_SWITCH)==LOW){
-//            newMsgSwitch.carrying = yes;
-//        }
-//        else{
-//            newMsgSwitch.carrying = no;
-//        }
-//        int sent_switch_msg = sendMsgToQueueSwitch(&newMsgSwitch);
-//        if(sent_switch_msg){
-//           while(1);
-//        }
-//        Message("\r\n");
-//        Message("Carrying box: ");
-//        if(newMsgSwitch.carrying==yes){
-//            Message("yes");
-//        }
-//        else {
-//            Message("no");
-//        }
-//    }
-    //    //enable RGB reading
-    //    transmit_size = 2;
-    //    for(i=0;i<transmit_size;i++){
-    //        txBuffer[i] = 0;
-    //    }
-    //    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ENABLE;
-    //    txBuffer[1] = TCS34725_ENABLE_AEN & 0xFF;
-    //    i2cTransaction.writeBuf   = txBuffer;
-    //    i2cTransaction.writeCount = transmit_size;
-    //    rect = I2C_transfer(i2c, &i2cTransaction);
+    initSwitch();
+    I2C_init();
+    I2C_Handle i2c;
+    I2C_Params i2cParams;
+    I2C_Transaction i2cTransaction;
+
+    I2C_Params_init(&i2cParams);
+    i2cParams.bitRate = I2C_100kHz;
+    i2cParams.transferMode = I2C_MODE_CALLBACK;
+    i2cParams.transferCallbackFxn = i2cCallback;
+
+    i2c = I2C_open(CONFIG_I2C_0, &i2cParams);
+    if (!i2c) {
+        Message("\r\nI2C open failed");
+        while(1);
+    }
+
+    uint8_t transmit_size = 1;
+    size_t txBuffer[transmit_size];
+    int i;
+    for(i=0;i<transmit_size;i++){
+        txBuffer[i] = 0;
+    }
+    uint8_t receive_size = 1;
+    size_t rxBuffer[receive_size];
+    for(i=0;i<receive_size;i++){
+        rxBuffer[i] = 0;
+    }
+
+
+    i2cTransaction.writeBuf   = txBuffer;
+    i2cTransaction.writeCount = transmit_size;
+    i2cTransaction.readBuf    = rxBuffer;
+    i2cTransaction.readCount  = receive_size;
+    i2cTransaction.slaveAddress = TCS34725_ADDRESS;
+
+
+    //check I2C connection
+    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ID;
+    int rect = I2C_transfer(i2c, &i2cTransaction);
+
+    //enable RGB reading
+    transmit_size = 2;
+    for(i=0;i<transmit_size;i++){
+        txBuffer[i] = 0;
+    }
+    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ENABLE;
+    txBuffer[1] = TCS34725_ENABLE_PON & 0xFF;
+    i2cTransaction.writeBuf   = txBuffer;
+    i2cTransaction.writeCount = transmit_size;
+    rect = I2C_transfer(i2c, &i2cTransaction);
+
+    transmit_size = 2;
+    for(i=0;i<transmit_size;i++){
+        txBuffer[i] = 0;
+    }
+    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ENABLE;
+    txBuffer[1] =  (TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN) & 0xFF;
+    i2cTransaction.writeBuf   = txBuffer;
+    i2cTransaction.writeCount = transmit_size;
+    rect = I2C_transfer(i2c, &i2cTransaction);
+
+    while(1){
+        msgTriggerRGBSwitch newTriggerRGBSwitch;
+        receiveMsgFromQueueTriggerRGBSwitch(&newTriggerRGBSwitch);
+        if(newTriggerRGBSwitch.triggerRGBSwitch){
+            //Send msgSwitch to queue
+            msgSwitch newMsgSwitch;
+            newMsgSwitch.type = limitSwitch;
+            if(GPIO_read(LIMIT_SWITCH)==LOW){
+                newMsgSwitch.carrying = yes;
+            }
+            else{
+                newMsgSwitch.carrying = no;
+            }
+            int sent_switch_msg = sendMsgToQueueSwitch(&newMsgSwitch);
+//            if(sent_switch_msg){
+//               while(1);
+//            }
+//            Message("\r\n");
+//            Message("Carrying box: ");
+//            if(newMsgSwitch.carrying==yes){
+//                Message("yes");
+//            }
+//            else {
+//                Message("no");
+//            }
+
+//            write8(TCS34725_ENABLE, TCS34725_ENABLE_PON);
+//              delay(3);
+//              write8(TCS34725_ENABLE, TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN);
+
+        }
+    }
+
     //
     //
     //    transmit_size = 1;
@@ -240,16 +251,14 @@ void* rgbTask(void *arg0){
     //       while(1); //error
     //    }
     // Read from limit switch
-
-
 }
 void initSwitch(){
     GPIO_setConfig(LIMIT_SWITCH, GPIO_CFG_INPUT | GPIO_CFG_IN_PU);
 }
-//void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success){
-//    size_t* rxBuffer = i2cTransaction->readBuf;
-//    if (rxBuffer[0] == 0x44) {
-//        Message("\r\nI2C connect successful");
-//        return;
-//    }
-//}
+void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success){
+    size_t* rxBuffer = i2cTransaction->readBuf;
+    if (rxBuffer[0] == 0x44) {
+        Message("\r\nI2C connect successful");
+        return;
+    }
+}

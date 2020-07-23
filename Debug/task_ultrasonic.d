@@ -31,6 +31,18 @@ task_ultrasonic.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freert
 task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
 task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
 task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h
+task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h
+task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h
+task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h
+task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
+task_ultrasonic.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/inc/hw_types.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/driverlib/prcm.h
+task_ultrasonic.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h
 
 ../task_ultrasonic.c: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/task_ultrasonic.h: 
@@ -63,3 +75,15 @@ C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/t
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/inc/hw_types.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/driverlib/prcm.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h: 

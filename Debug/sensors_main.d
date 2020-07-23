@@ -20,10 +20,6 @@ sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include
 sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h
 sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h
 sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h
-sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
-sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
-sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h
-sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
 sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/timerUS.h
 sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/sensors_queues.h
 sensors_main.obj: C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/FreeRTOS.h
@@ -39,10 +35,11 @@ sensors_main.obj: C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/
 sensors_main.obj: C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/list.h
 sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/uart_term.h
 sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/UART.h
+sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h
+sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
+sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
+sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
 sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h
-sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
-sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
-sensors_main.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/PWM.h
 sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/timerRGB.h
 sensors_main.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/debug_if.h
 sensors_main.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/math.h
@@ -70,10 +67,6 @@ C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
-C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/timerUS.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/sensors_queues.h: 
 C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/FreeRTOS.h: 
@@ -89,10 +82,11 @@ C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/task.h:
 C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/list.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/uart_term.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/UART.h: 
+C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
-C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/PWM.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/timerRGB.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/debug_if.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/math.h: 

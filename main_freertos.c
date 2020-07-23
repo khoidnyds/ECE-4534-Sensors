@@ -54,13 +54,13 @@
 extern void *mainThread(void *arg0);
 
 /* Stack size in bytes */
-#define THREADSTACKSIZE   1024
+#define THREADSTACKSIZE   4096
 
 #define US_TASK_PRIORITY 2
-#define US_TASK_STACK_SIZE 2048
+#define US_TASK_STACK_SIZE 4096
 
 #define RGB_TASK_PRIORITY 2
-#define RGB_TASK_STACK_SIZE 1024
+#define RGB_TASK_STACK_SIZE 4096
 
 /*
  *  ======== main ========
@@ -115,21 +115,21 @@ int main(void)
 //        errorHalt("Unable to set stack size");
 //    if(pthread_create(&us_thread, &us_pAttrs, usTask, NULL))
 //        errorHalt("Unable to create thread");
-//
-//
-//    pthread_t rgb_thread;
-//    pthread_attr_t rgb_pAttrs;
-//    struct sched_param rgb_priParam;
-//
-//    pthread_attr_init(&rgb_pAttrs);
-//    rgb_priParam.sched_priority = RGB_TASK_PRIORITY;
-//    if(pthread_attr_setdetachstate(&rgb_pAttrs, PTHREAD_CREATE_DETACHED))
-//        errorHalt(" pthread_attr_setdetachstate() failed");
-//    pthread_attr_setschedparam(&rgb_pAttrs, &rgb_priParam);
-//    if(pthread_attr_setstacksize(&rgb_pAttrs, RGB_TASK_STACK_SIZE))
-//        errorHalt("Unable to set stack size");
-//    if(pthread_create(&rgb_thread, &rgb_pAttrs, rgbTask, NULL))
-//        errorHalt("Unable to create thread");
+
+
+    pthread_t rgb_thread;
+    pthread_attr_t rgb_pAttrs;
+    struct sched_param rgb_priParam;
+
+    pthread_attr_init(&rgb_pAttrs);
+    rgb_priParam.sched_priority = RGB_TASK_PRIORITY;
+    if(pthread_attr_setdetachstate(&rgb_pAttrs, PTHREAD_CREATE_DETACHED))
+        errorHalt(" pthread_attr_setdetachstate() failed");
+    pthread_attr_setschedparam(&rgb_pAttrs, &rgb_priParam);
+    if(pthread_attr_setstacksize(&rgb_pAttrs, RGB_TASK_STACK_SIZE))
+        errorHalt("Unable to set stack size");
+    if(pthread_create(&rgb_thread, &rgb_pAttrs, rgbTask, NULL))
+        errorHalt("Unable to create thread");
 
 
     /* Start the FreeRTOS scheduler */
