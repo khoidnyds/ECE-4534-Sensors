@@ -101,21 +101,19 @@ int main(void)
         while (1) {}
     }
 
+    pthread_t us_thread;
+    pthread_attr_t us_pAttrs;
+    struct sched_param us_priParam;
 
-//    pthread_t us_thread;
-//    pthread_attr_t us_pAttrs;
-//    struct sched_param us_priParam;
-//
-//    pthread_attr_init(&us_pAttrs);
-//    us_priParam.sched_priority = US_TASK_PRIORITY;
-//    if(pthread_attr_setdetachstate(&us_pAttrs, PTHREAD_CREATE_DETACHED))
-//        errorHalt(" pthread_attr_setdetachstate() failed");
-//    pthread_attr_setschedparam(&us_pAttrs, &us_priParam);
-//    if(pthread_attr_setstacksize(&us_pAttrs, US_TASK_STACK_SIZE))
-//        errorHalt("Unable to set stack size");
-//    if(pthread_create(&us_thread, &us_pAttrs, usTask, NULL))
-//        errorHalt("Unable to create thread");
-
+    pthread_attr_init(&us_pAttrs);
+    us_priParam.sched_priority = US_TASK_PRIORITY;
+    if(pthread_attr_setdetachstate(&us_pAttrs, PTHREAD_CREATE_DETACHED))
+        errorHalt(" pthread_attr_setdetachstate() failed");
+    pthread_attr_setschedparam(&us_pAttrs, &us_priParam);
+    if(pthread_attr_setstacksize(&us_pAttrs, US_TASK_STACK_SIZE))
+        errorHalt("Unable to set stack size");
+    if(pthread_create(&us_thread, &us_pAttrs, usTask, NULL))
+        errorHalt("Unable to create thread");
 
     pthread_t rgb_thread;
     pthread_attr_t rgb_pAttrs;

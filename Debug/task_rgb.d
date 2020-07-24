@@ -16,6 +16,14 @@ task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/mac
 task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/machine/_stdint.h
 task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/sys/_stdint.h
 task_rgb.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h
+task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
+task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
+task_rgb.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h
+task_rgb.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h
+task_rgb.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h
+task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h
+task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h
+task_rgb.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h
 task_rgb.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h
 task_rgb.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
 task_rgb.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/uart_term.h
@@ -54,6 +62,14 @@ C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/machine/_types.h:
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/machine/_stdint.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/sys/_stdint.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/GPIO.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/types.h: 
+C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/sys/_internal.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/../include/time.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/abi_prefix.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/xlocale/_time.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/uart_term.h: 

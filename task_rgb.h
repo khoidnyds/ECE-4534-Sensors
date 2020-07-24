@@ -10,6 +10,9 @@
 
 #include <ti/drivers/I2C.h>
 #include <ti/drivers/GPIO.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stddef.h>
 #include "ti_drivers_config.h"
 #include "uart_term.h"
 #include "debug_if.h"
@@ -77,6 +80,7 @@ typedef enum {
   TCS34725_INTEGRATIONTIME_154MS = 0xC0, /**<  154ms - 64 cycles  - Max Count: 65535 */
   TCS34725_INTEGRATIONTIME_700MS = 0x00  /**<  700ms - 256 cycles - Max Count: 65535 */
 } tcs34725IntegrationTime_t;
+tcs34725IntegrationTime_t integrationTime;
 
 /** Gain settings for TCS34725  */
 typedef enum {
@@ -85,6 +89,11 @@ typedef enum {
   TCS34725_GAIN_16X = 0x02,  /**<  16x gain */
   TCS34725_GAIN_60X = 0x03   /**<  60x gain */
 } tcs34725Gain_t;
+tcs34725Gain_t gain;
+
+typedef enum {STATE_CLEAR, STATE_RED, STATE_GREEN, STATE_BLUE} state_rgb;
+state_rgb stateRGB;
+uint16_t clearRaw, redRaw, greenRaw, blueRaw;
 
 void* rgbTask(void *arg0);
 void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success);

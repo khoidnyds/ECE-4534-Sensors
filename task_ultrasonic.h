@@ -24,10 +24,10 @@
 #define LOW                     0
 #define SUCCESS                 0
 #define FAIL                    -1
-#define MAX_COUNT               5 //sensor update every 0.84s
-#define Timer_ECHO_PERIOD_IN_US 70000
+#define MAX_COUNT               3 //sensor update every 0.84s
+#define Timer_ECHO_PERIOD_IN_US 1000000
 
-Timer_Handle timerEcho;
+Timer_Handle timerUS;
 double start, end;
 double us1_total, us2_total, us3_total, us4_total;
 int us1_count, us2_count, us3_count, us4_count;

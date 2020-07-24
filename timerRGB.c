@@ -13,15 +13,11 @@ void initTimerRGB()
     params.timerCallback = timerRGBCallback;
     timerRGB = Timer_open(CONFIG_TIMER_1, &params);
     if (timerRGB == NULL) {
-        // Failed to initialized timer
         while(1);
     }
     if (Timer_start(timerRGB) == Timer_STATUS_ERROR) {
-        // Failed to start timer
         while(1);
     }
-//    dbgOutputLoc(DLOC_TIMER_US_INIT_SUCCESS);
-
     return;
 }
 

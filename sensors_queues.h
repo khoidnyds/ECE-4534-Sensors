@@ -50,7 +50,7 @@ typedef struct {
 } msgTriggerRGBSwitch;
 
 typedef struct {
-    msgType type;
+    char* topic;
     char* payload;
 } msgMqtt;
 

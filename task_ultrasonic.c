@@ -18,21 +18,17 @@ void* usTask(void *arg0){
     params.timerMode = Timer_CONTINUOUS_CALLBACK;
     params.timerCallback = echoCallback;
 
-    timerEcho = Timer_open(CONFIG_TIMER_2, &params);
-
-    if (timerEcho == NULL) {
-        // Failed to initialized timer
-        //dbgOutputLoc(DLOC_TIMER_US_INIT_FAIL);
-
-
+    timerUS = Timer_open(CONFIG_TIMER_2, &params);
+    if (timerUS == NULL) {
+        Message("\r\nOpen timerUS failed");
         while(1);
     }
 
-    if (Timer_start(timerEcho) == Timer_STATUS_ERROR) {
-        // Failed to start timer
-        //dbgOutputLoc(DLOC_TIMER_US_START_FAIL);
+    if (Timer_start(timerUS) == Timer_STATUS_ERROR) {
+        Message("\r\nStart timerUS failed");
         while(1);
     }
+
     currentState = INIT;
     start=0;
     end=0;
@@ -70,9 +66,8 @@ void* usTask(void *arg0){
 void fsm(uint_least8_t pinin, uint_least8_t pinout){
     GPIO_setConfig(pinin, GPIO_CFG_OUTPUT | GPIO_CFG_OUT_LOW);
     GPIO_write(pinin, HIGH);
-    // delay 10us
     int i;
-    for(i=0;i<50;i++);
+    for(i=0;i<30;i++);
     GPIO_write(pinin, LOW);
 
     GPIO_setCallback(pinout, getTime);
@@ -80,17 +75,16 @@ void fsm(uint_least8_t pinin, uint_least8_t pinout){
 }
 
 void getTime(uint_least8_t index){
-
     if(GPIO_read(index)==HIGH){
-        start = Timer_getCount(timerEcho);
+        start = Timer_getCount(timerUS);
     }
     else{
-        end = Timer_getCount(timerEcho);
+        end = Timer_getCount(timerUS);
     }
 
     if(start!=0 && end !=0){
         double speed = (331 + 0.6 * AMBIENT_TEMP) / 1000;
-        double distance = speed * (start-end) / 16;
+        double distance = speed * (end-start) / 16; //80MHz and 2*distance
 
         switch(index){
             case US1_ECHO:
@@ -147,23 +141,22 @@ void getTime(uint_least8_t index){
             newMsgUS.type = ultrasonic;
             int success = sendMsgToQueueUS(&newMsgUS);
             if(success==FAIL){
-                //dbgOutputLoc(DLOC_TIMER_US_CB_SEND_MSG_FAIL);
+                Message("\r\nSend US message failed");
                 while(1);
             }
-            //dbgOutputLoc(DLOC_TIMER_US_CB_SEND_MSG_SUCCESS);
 
             Message("\r\n");
             if(newMsgUS.position==front){
-                Message("F:");
+                Message("Front: ");
             }
             else if(newMsgUS.position==left){
-                Message("L:");
+                Message("Left : ");
             }
             else if(newMsgUS.position==right){
-                Message("R:");
+                Message("Right: ");
             }
             else if(newMsgUS.position==back){
-                Message("B:");
+                Message("Back : ");
             }
             char text[12];
             sprintf(text, "%d", newMsgUS.distance);

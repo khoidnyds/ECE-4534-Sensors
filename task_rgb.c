@@ -8,7 +8,9 @@
 #include <task_rgb.h>
 
 void* rgbTask(void *arg0){
-    //Message("\r\nStarting rgbTask");
+    integrationTime = TCS34725_INTEGRATIONTIME_700MS;
+    gain = TCS34725_GAIN_60X;
+    stateRGB = STATE_CLEAR;
 
     initSwitch();
     I2C_init();
@@ -28,17 +30,16 @@ void* rgbTask(void *arg0){
     }
 
     uint8_t transmit_size = 1;
-    size_t txBuffer[transmit_size];
+    uint8_t txBuffer[transmit_size];
     int i;
     for(i=0;i<transmit_size;i++){
         txBuffer[i] = 0;
     }
     uint8_t receive_size = 1;
-    size_t rxBuffer[receive_size];
+    uint8_t rxBuffer[receive_size];
     for(i=0;i<receive_size;i++){
         rxBuffer[i] = 0;
     }
-
 
     i2cTransaction.writeBuf   = txBuffer;
     i2cTransaction.writeCount = transmit_size;
@@ -49,29 +50,68 @@ void* rgbTask(void *arg0){
 
     //check I2C connection
     txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ID;
-    int rect = I2C_transfer(i2c, &i2cTransaction);
+    I2C_transfer(i2c, &i2cTransaction);
+    usleep(3000);
+
+    transmit_size = 2;
+    for(i=0;i<transmit_size;i++){
+        txBuffer[i] = 0;
+    }
+    transmit_size = 2;
+    receive_size = 0;
+    i2cTransaction.writeCount = transmit_size;
+    i2cTransaction.writeBuf   = txBuffer;
+    i2cTransaction.readCount  = receive_size;
+
+    //set integration time
+    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ATIME;
+    txBuffer[1] = integrationTime & 0xFF;
+    I2C_transfer(i2c, &i2cTransaction);
+    usleep(3000);
+
+    //set gain
+    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_CONTROL;
+    txBuffer[1] = gain & 0xFF;
+    I2C_transfer(i2c, &i2cTransaction);
+    usleep(3000);
 
     //enable RGB reading
-    transmit_size = 2;
-    for(i=0;i<transmit_size;i++){
-        txBuffer[i] = 0;
-    }
     txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ENABLE;
     txBuffer[1] = TCS34725_ENABLE_PON & 0xFF;
-    i2cTransaction.writeBuf   = txBuffer;
-    i2cTransaction.writeCount = transmit_size;
-    rect = I2C_transfer(i2c, &i2cTransaction);
+    I2C_transfer(i2c, &i2cTransaction);
+    usleep(3000);
 
-    transmit_size = 2;
-    for(i=0;i<transmit_size;i++){
-        txBuffer[i] = 0;
-    }
     txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_ENABLE;
-    txBuffer[1] =  (TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN) & 0xFF;
-    i2cTransaction.writeBuf   = txBuffer;
-    i2cTransaction.writeCount = transmit_size;
-    rect = I2C_transfer(i2c, &i2cTransaction);
+    txBuffer[1] = (TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN) & 0xFF;
+    I2C_transfer(i2c, &i2cTransaction);
+    usleep(3000);
 
+    /* Set a delay for the integration time.
+      This is only necessary in the case where enabling and then
+      immediately trying to read values back. This is because setting
+      AEN triggers an automatic integration, so if a read RGBC is
+      performed too quickly, the data is not yet valid and all 0's are
+      returned */
+    switch (integrationTime) {
+    case TCS34725_INTEGRATIONTIME_2_4MS:
+        usleep(3000);
+        break;
+    case TCS34725_INTEGRATIONTIME_24MS:
+        usleep(24000);
+        break;
+    case TCS34725_INTEGRATIONTIME_50MS:
+        usleep(50000);
+        break;
+    case TCS34725_INTEGRATIONTIME_101MS:
+        usleep(101000);
+        break;
+    case TCS34725_INTEGRATIONTIME_154MS:
+        usleep(154000);
+        break;
+    case TCS34725_INTEGRATIONTIME_700MS:
+        usleep(700000);
+        break;
+    }
     while(1){
         msgTriggerRGBSwitch newTriggerRGBSwitch;
         receiveMsgFromQueueTriggerRGBSwitch(&newTriggerRGBSwitch);
@@ -86,9 +126,11 @@ void* rgbTask(void *arg0){
                 newMsgSwitch.carrying = no;
             }
             int sent_switch_msg = sendMsgToQueueSwitch(&newMsgSwitch);
-//            if(sent_switch_msg){
-//               while(1);
-//            }
+            if(sent_switch_msg){
+               Message("\r\nSend Switch message failed");
+               while(1);
+            }
+
 //            Message("\r\n");
 //            Message("Carrying box: ");
 //            if(newMsgSwitch.carrying==yes){
@@ -98,167 +140,139 @@ void* rgbTask(void *arg0){
 //                Message("no");
 //            }
 
-//            write8(TCS34725_ENABLE, TCS34725_ENABLE_PON);
-//              delay(3);
-//              write8(TCS34725_ENABLE, TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN);
+            transmit_size = 1;
+            for(i=0;i<transmit_size;i++){
+                txBuffer[i] = 0;
+            }
+            receive_size = 2;
+            for(i=0;i<receive_size;i++){
+                rxBuffer[i] = 0;
+            }
+            i2cTransaction.writeBuf   = txBuffer;
+            i2cTransaction.writeCount = transmit_size;
+            i2cTransaction.readBuf    = rxBuffer;
+            i2cTransaction.readCount  = receive_size;
+            txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_CDATAL;
+            I2C_transfer(i2c, &i2cTransaction);
+            usleep(3000);
 
-        }
-    }
+            txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_RDATAL;
+            I2C_transfer(i2c, &i2cTransaction);
+            usleep(3000);
 
-    //
-    //
-    //    transmit_size = 1;
-    //    for(i=0;i<transmit_size;i++){
-    //        txBuffer[i] = 0;
-    //    }
-    //    receive_size = 2;
-    //    for(i=0;i<receive_size;i++){
-    //        rxBuffer[i] = 0;
-    //    }
-    //    i2cTransaction.writeBuf   = txBuffer;
-    //    i2cTransaction.writeCount = transmit_size;
-    //    i2cTransaction.readBuf    = rxBuffer;
-    //    i2cTransaction.readCount  = receive_size;
-    //    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_CDATAL;
-    //    rect = I2C_transfer(i2c, &i2cTransaction);
-    //    uint16_t clearRaw = rxBuffer[0] << 8 | rxBuffer[1];
-    //
-    //    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_RDATAL;
-    //    rect = I2C_transfer(i2c, &i2cTransaction);
-    //    uint16_t redRaw = rxBuffer[0] << 8 | rxBuffer[1];
-    //
-    //    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_GDATAL;
-    //    rect = I2C_transfer(i2c, &i2cTransaction);
-    //    uint16_t greenRaw = rxBuffer[0] << 8 | rxBuffer[1];
-    //
-    //    txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_BDATAL;
-    //    rect = I2C_transfer(i2c, &i2cTransaction);
-    //    uint16_t blueRaw = rxBuffer[0] << 8 | rxBuffer[1];
-    //
-    //    float redRGB, greenRGB, blueRGB;
-    //    redRGB = redRaw / (float)clearRaw * 255.0;
-    //    greenRGB = greenRaw / (float)clearRaw * 255.0;
-    //    blueRGB = blueRaw / (float)clearRaw * 255.0;
+            txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_GDATAL;
+            I2C_transfer(i2c, &i2cTransaction);
+            usleep(3000);
 
-
-
-
-        //    auto data = i2cTransaction->readBuf;
-    //
-    //
-    //
-    //    msgRGB newMsgRGB;
-    //    newMsgRGB.type = color;
-    //    if(redRGB>205 && greenRGB<50 && blueRGB<50){
-    //      newMsgRGB.color = red;
-    //    }
-    //    else if(redRGB<50 && greenRGB<50 && blueRGB>205){
-    //      newMsgRGB.color = blue;
-    //    }
-    //    else if(redRGB<50 && greenRGB>205 && blueRGB<50){
-    //      newMsgRGB.color = green;
-    //    }
-    //    else if(redRGB<50 && greenRGB<50 && blueRGB<50){
-    //      newMsgRGB.color = black;
-    //    }
-    //    else if(redRGB>205 && greenRGB>205 && blueRGB>205){
-    //      newMsgRGB.color = white;
-    //    }
-    //    else{
-    //      newMsgRGB.color = unknown;
-    //    }
-    //    int sent_rgb = sendMsgToQueueRGB(&newMsgRGB);
-    //    if(sent_rgb){
-    //      while(1);
-    //    }
-
-
-
-//    msgMqtt sendMsg;
-//    msgRGB outMsgRGB;
-//    msgSwitch outMsgSwitch;
-//    int receive_RGBMsg, receive_SwitchMsg;
-//    receive_RGBMsg = receiveMsgFromQueueRGB(&outMsgRGB);  //Make one subroutine call to receive from a single queue
-//    receive_SwitchMsg = receiveMsgFromQueueSwitch(&outMsgSwitch);  //Make one subroutine call to receive from a single queue
-//    while(1){
-//        if(receive_RGBMsg || receive_SwitchMsg){
-//            //dbgOutputLoc(1);
-//        }
-//        else{
-//
-//            //            // send to MQTT broker
-//            //            UART_PRINT("\r\n");
-//            //            UART_PRINT("Color: ");
-//            //            if(newMsgRGB.color==red){
-//            //                UART_PRINT("red");
-//            //            }
-//            //            else if(newMsgRGB.color==green){
-//            //                UART_PRINT("green");
-//            //            }
-//            //            else if(newMsgRGB.color==blue){
-//            //                UART_PRINT("blue");
-//            //            }
-//            //            else if(newMsgRGB.color==white){
-//            //                UART_PRINT("white");
-//            //            }
-//            //            else if(newMsgRGB.color==black){
-//            //                UART_PRINT("black");
-//            //            }
-//            //            else {
-//            //                UART_PRINT("unknown");
-//            //            }
-//
-//            // send to MQTT broker
-//            DBG_PRINT("\r\n");
-//            DBG_PRINT("Carrying box: ");
-//            if(outMsgSwitch.carrying==yes){
-//                DBG_PRINT("yes");
-//            }
-//            else {
-//                DBG_PRINT("no");
-//            }
-//        }
-//    }
-    //    I2C_Handle i2c = initI2C();
-    ////    dbgOutputLoc(DLOC_TIMER_US_CB_BEGIN);
-    //    uint8_t transmit_size = 1;
-    //    uint8_t receive_size = 0;
-    //
-    //    I2C_Transaction i2cTransaction;
-    //
-    //    i2cTransaction.writeBuf   = txBuffer;
-    //    i2cTransaction.writeCount = transmit_size + 1;
-    //    i2cTransaction.readBuf    = rxBuffer;
-    //    i2cTransaction.readCount  = receive_size;
-    //    i2cTransaction.slaveAddress = TCS34725_ADDRESS;
-    //
-    //
-    //    txBuffer[0] = TCS34725_ID;
-    //    I2C_transfer(i2c, &i2cTransaction);
-    //
-    //    uint16_t c, r, g, b;
-    //    Message("\r\nI2C start transfer");
-    //
-    //    // get c value
-    //    txBuffer[0] = TCS34725_ID;
-    //    //txBuffer[1] = TCS34725_COMMAND_BIT | TCS34725_CDATAL;
-    //    bool rect = I2C_transfer(i2c, &i2cTransaction);
-    //    if (rect) {
-    //       c = (rxBuffer[0] << 8) | (rxBuffer[1]);
-    //    }
-    //    else {
-    //       Message("\r\nI2C transfer failed");
-    //       while(1); //error
-    //    }
-    // Read from limit switch
+            txBuffer[0] = TCS34725_COMMAND_BIT | TCS34725_BDATAL;
+            I2C_transfer(i2c, &i2cTransaction);
+            usleep(3000);
+            }
+     }
 }
+
 void initSwitch(){
     GPIO_setConfig(LIMIT_SWITCH, GPIO_CFG_INPUT | GPIO_CFG_IN_PU);
 }
 void i2cCallback(I2C_Handle i2c, I2C_Transaction* i2cTransaction, bool success){
     size_t* rxBuffer = i2cTransaction->readBuf;
-    if (rxBuffer[0] == 0x44) {
-        Message("\r\nI2C connect successful");
-        return;
+    if (i2cTransaction->readCount==1 && i2cTransaction->writeCount==1 && rxBuffer[0] != 0x44) {
+        Message("\r\nI2C connect failed");
+        while(1);
+    }
+    if(i2cTransaction->readCount==2){
+        switch(stateRGB){
+        case STATE_CLEAR:{
+            stateRGB = STATE_RED;
+            clearRaw = rxBuffer[1] << 8 | rxBuffer[0];
+            break;
+        }
+        case STATE_RED:{
+            stateRGB = STATE_GREEN;
+            redRaw = rxBuffer[1] << 8 | rxBuffer[0];
+            break;
+        }
+        case STATE_GREEN:{
+            stateRGB = STATE_BLUE;
+            greenRaw = rxBuffer[1] << 8 | rxBuffer[0];
+            break;
+        }
+        case STATE_BLUE:{
+            stateRGB = STATE_CLEAR;
+            blueRaw = rxBuffer[1] << 8 | rxBuffer[0];
+
+            float redRGB, greenRGB, blueRGB;
+            uint32_t sum = clearRaw;
+            if (clearRaw == 0) {
+                redRGB = greenRGB = blueRGB = 0;
+            }
+            else{
+                redRGB = (float)redRaw / sum * 255.0;
+                greenRGB = (float)greenRaw / sum * 255.0;
+                blueRGB = (float)blueRaw / sum * 255.0;
+            }
+
+            msgRGB newMsgRGB;
+            newMsgRGB.type = color;
+            if(redRGB>100 && greenRGB<100 && blueRGB<100){
+              newMsgRGB.color = red;
+            }
+            else if(redRGB<100 && greenRGB<100 && blueRGB>100){
+              newMsgRGB.color = blue;
+            }
+            else if(redRGB<100 && greenRGB>100 && blueRGB<100){
+              newMsgRGB.color = green;
+            }
+            else if(redRGB<100 && greenRGB<100 && blueRGB<100){
+              newMsgRGB.color = black;
+            }
+            else if(redRGB>150 && greenRGB>150 && blueRGB>150){
+              newMsgRGB.color = white;
+            }
+            else{
+              newMsgRGB.color = unknown;
+            }
+            int sent_rgb = sendMsgToQueueRGB(&newMsgRGB);
+            if(sent_rgb){
+                Message("\r\nSend RGB message failed");
+                while(1);
+            }
+//            char r[5];
+//            char g[5];
+//            char b[5];
+//            switch(newMsgRGB.color){
+//            case red:
+//                Message("\r\nRed: ");
+//                break;
+//            case blue:
+//                Message("\r\nBlue: ");
+//                break;
+//            case green:
+//                Message("\r\nGreen: ");
+//                break;
+//            case white:
+//                Message("\r\nWhite: ");
+//                break;
+//            case black:
+//                Message("\r\nBlack: ");
+//                break;
+//            case unknown:
+//                Message("\r\nUnknown: ");
+//                break;
+//            }
+//            sprintf(r, "%f", redRGB);
+//            Message(r);
+//            Message(" ");
+//            sprintf(g, "%f", greenRGB);
+//            Message(g);
+//            Message(" ");
+//            sprintf(b, "%f", blueRGB);
+//            Message(b);
+//            Message(" ");
+            break;
+        }
+        default:
+            break;
+        }
     }
 }

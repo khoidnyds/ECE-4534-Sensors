@@ -13,6 +13,13 @@ void *mainThread(void *arg0)
     initTimerUS();
     initTimerRGB();
     while(1){
+        msgUS newMsgUS;
+        msgRGB newMsgRGB;
+        msgSwitch newMsgSwitch;
+        msgMqtt newMsgMqtt;
 
+        receiveMsgFromQueueUS(&newMsgUS);
+        receiveMsgFromQueueRGB(&newMsgRGB);
+        receiveMsgFromQueueSwitch(&newMsgSwitch);
     }
 }
