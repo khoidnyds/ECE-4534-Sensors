@@ -1,6 +1,6 @@
 #include <sensors_queues.h>
 
-#define QUEUESIZE 100
+#define QUEUESIZE 300
 
 QueueHandle_t xQueueUS = NULL;
 QueueHandle_t xQueueRGB = NULL;

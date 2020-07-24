@@ -30,6 +30,8 @@ sensors_queues.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freerto
 sensors_queues.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
 sensors_queues.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
 sensors_queues.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
+sensors_queues.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
+sensors_queues.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
 
 ../sensors_queues.c: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/sensors_queues.h: 
@@ -61,3 +63,5 @@ C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/t
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 

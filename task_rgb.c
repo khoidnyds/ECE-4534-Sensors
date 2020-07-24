@@ -131,14 +131,6 @@ void* rgbTask(void *arg0){
                while(1);
             }
 
-//            Message("\r\n");
-//            Message("Carrying box: ");
-//            if(newMsgSwitch.carrying==yes){
-//                Message("yes");
-//            }
-//            else {
-//                Message("no");
-//            }
 
             transmit_size = 1;
             for(i=0;i<transmit_size;i++){

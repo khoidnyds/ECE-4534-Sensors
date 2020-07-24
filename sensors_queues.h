@@ -11,6 +11,7 @@
 #include <FreeRTOS.h>
 #include <queue.h>
 #include "uart_term.h"
+#include <stdio.h>
 
 
 extern QueueHandle_t xQueueUS;

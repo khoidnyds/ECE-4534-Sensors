@@ -54,8 +54,6 @@ main_freertos.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/un
 main_freertos.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/sensors_queues.h
 main_freertos.obj: C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/queue.h
 main_freertos.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/task_ultrasonic.h
-main_freertos.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/inc/hw_types.h
-main_freertos.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/driverlib/prcm.h
 main_freertos.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h
 
 ../main_freertos.c: 
@@ -112,6 +110,4 @@ C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/posix/ccs/unistd.h:
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/sensors_queues.h: 
 C:/ti/FreeRTOSv10.3.1/FreeRTOSv10.3.1/FreeRTOS/Source/include/queue.h: 
 C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/task_ultrasonic.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/inc/hw_types.h: 
-C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/cc32xx/driverlib/prcm.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h: 

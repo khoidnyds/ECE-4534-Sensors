@@ -15,8 +15,6 @@
 #include <ti/drivers/GPIO.h>
 #include "ti_drivers_config.h"
 #include "uart_term.h"
-#include <ti/devices/cc32xx/inc/hw_types.h>
-#include <ti/devices/cc32xx/driverlib/prcm.h>
 #include <ti/drivers/Timer.h>
 
 #define AMBIENT_TEMP            30 // in Celcius
@@ -25,7 +23,7 @@
 #define SUCCESS                 0
 #define FAIL                    -1
 #define MAX_COUNT               3 //sensor update every 0.84s
-#define Timer_ECHO_PERIOD_IN_US 1000000
+#define Timer_ECHO_PERIOD_IN_US 10000000 //big enough to NOT be roll-over
 
 Timer_Handle timerUS;
 double start, end;
@@ -33,6 +31,8 @@ double us1_total, us2_total, us3_total, us4_total;
 int us1_count, us2_count, us3_count, us4_count;
 typedef enum {INIT, STATE_US1, STATE_US2, STATE_US3, STATE_US4} state;
 state currentState;
+typedef enum {START, END} GPIO_int;
+GPIO_int currentInt;
 
 void* usTask(void *arg0);
 void getTime(uint_least8_t index);

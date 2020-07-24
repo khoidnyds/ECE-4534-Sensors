@@ -31,6 +31,8 @@ timerUS.obj: C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/D
 timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h
 timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h
 timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h
+timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h
+timerUS.obj: C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h
 timerUS.obj: C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h
 
 ../timerUS.c: 
@@ -64,4 +66,6 @@ C:/Users/Kaito/Desktop/CCS/sensors_CC3220SF_LAUNCHXL_freertos_ccs/Debug/syscfg/t
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/I2C.h: 
 C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdbool.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdio.h: 
+C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include/stdarg.h: 
 C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source/ti/drivers/Timer.h: 

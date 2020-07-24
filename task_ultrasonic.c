@@ -1,10 +1,3 @@
-/*
- * ultrasonic.c
- *
- *  Created on: Jul 20, 2020
- *      Author: Kaito
- */
-
 #include <task_ultrasonic.h>
 
 void* usTask(void *arg0){
@@ -30,6 +23,7 @@ void* usTask(void *arg0){
     }
 
     currentState = INIT;
+    currentInt = START;
     start=0;
     end=0;
     while(1){
@@ -75,14 +69,16 @@ void fsm(uint_least8_t pinin, uint_least8_t pinout){
 }
 
 void getTime(uint_least8_t index){
-    if(GPIO_read(index)==HIGH){
+    switch(currentInt){
+    case START:{
+        currentInt = END;
         start = Timer_getCount(timerUS);
+        break;
     }
-    else{
+    case END:{
+        currentInt = START;
         end = Timer_getCount(timerUS);
-    }
 
-    if(start!=0 && end !=0){
         double speed = (331 + 0.6 * AMBIENT_TEMP) / 1000;
         double distance = speed * (end-start) / 16; //80MHz and 2*distance
 
@@ -108,10 +104,8 @@ void getTime(uint_least8_t index){
         }
 
         // take average in MAX_COUNT times measurement and send to queue
-        if(us1_count == MAX_COUNT ||
-           us2_count == MAX_COUNT ||
-           us3_count == MAX_COUNT ||
-           us4_count == MAX_COUNT){
+        if(us1_count == MAX_COUNT || us2_count == MAX_COUNT ||
+           us3_count == MAX_COUNT || us4_count == MAX_COUNT){
             msgUS newMsgUS;
             if(us1_count==MAX_COUNT){
                 newMsgUS.position = front;
@@ -140,31 +134,18 @@ void getTime(uint_least8_t index){
 
             newMsgUS.type = ultrasonic;
             int success = sendMsgToQueueUS(&newMsgUS);
+
             if(success==FAIL){
                 Message("\r\nSend US message failed");
                 while(1);
             }
-
-            Message("\r\n");
-            if(newMsgUS.position==front){
-                Message("Front: ");
-            }
-            else if(newMsgUS.position==left){
-                Message("Left : ");
-            }
-            else if(newMsgUS.position==right){
-                Message("Right: ");
-            }
-            else if(newMsgUS.position==back){
-                Message("Back : ");
-            }
-            char text[12];
-            sprintf(text, "%d", newMsgUS.distance);
-            Message(text);
         }
-
         start=0;
         end=0;
+        break;
+    }
+    default:
+        break;
     }
 }
 void echoCallback(Timer_Handle handle, int_fast16_t status){

@@ -57,7 +57,7 @@ extern void *mainThread(void *arg0);
 #define THREADSTACKSIZE   4096
 
 #define US_TASK_PRIORITY 2
-#define US_TASK_STACK_SIZE 4096
+#define US_TASK_STACK_SIZE 4096*2
 
 #define RGB_TASK_PRIORITY 2
 #define RGB_TASK_STACK_SIZE 4096
