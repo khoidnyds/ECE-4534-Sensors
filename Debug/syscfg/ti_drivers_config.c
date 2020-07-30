@@ -65,7 +65,7 @@ const UDMACC32XX_Config UDMACC32XX_config = {
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/gpio/GPIOCC32XX.h>
 
-#define CONFIG_GPIO_COUNT 9
+#define CONFIG_GPIO_COUNT 10
 
 /*
  *  ======== gpioPinConfigs ========
@@ -90,6 +90,8 @@ GPIO_PinConfig gpioPinConfigs[] = {
     GPIOCC32XX_GPIO_12 | GPIO_CFG_IN_PD | GPIO_CFG_IN_INT_BOTH_EDGES,
     /* LIMIT_SWITCH */
     GPIOCC32XX_GPIO_08 | GPIO_CFG_IN_PU | GPIO_CFG_IN_INT_NONE,
+    /* CONFIG_GPIO_0 */
+    GPIOCC32XX_GPIO_00 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
 };
 
 /*
@@ -121,6 +123,8 @@ GPIO_CallbackFxn gpioCallbackFunctions[] = {
     getTime,
     /* LIMIT_SWITCH */
     NULL,
+    /* CONFIG_GPIO_0 */
+    NULL,
 };
 
 const uint_least8_t US1_TRIGGER_CONST = US1_TRIGGER;
@@ -132,6 +136,7 @@ const uint_least8_t US2_ECHO_CONST = US2_ECHO;
 const uint_least8_t US3_ECHO_CONST = US3_ECHO;
 const uint_least8_t US1_ECHO_CONST = US1_ECHO;
 const uint_least8_t LIMIT_SWITCH_CONST = LIMIT_SWITCH;
+const uint_least8_t CONFIG_GPIO_0_CONST = CONFIG_GPIO_0;
 
 /*
  *  ======== GPIOCC32XX_config ========
@@ -139,8 +144,8 @@ const uint_least8_t LIMIT_SWITCH_CONST = LIMIT_SWITCH;
 const GPIOCC32XX_Config GPIOCC32XX_config = {
     .pinConfigs = (GPIO_PinConfig *)gpioPinConfigs,
     .callbacks = (GPIO_CallbackFxn *)gpioCallbackFunctions,
-    .numberOfPinConfigs = 9,
-    .numberOfCallbacks = 9,
+    .numberOfPinConfigs = 10,
+    .numberOfCallbacks = 10,
     .intPriority = (~0)
 };
 

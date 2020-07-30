@@ -154,9 +154,10 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 
 dependents:
 	-cd C:/Users/Kaito/Desktop/CCS/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug && $(MAKE) all
+	-cd C:/Users/Kaito/Desktop/ECE\ 4534/Inter2/IntercomponentCommunication/Debug && $(MAKE) all
 
 # Tool invocations
-sensors_CC3220SF_LAUNCHXL_freertos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/Kaito/Desktop/CCS/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug/freertos_builds_CC3220SF_LAUNCHXL_release_ccs.lib
+sensors_CC3220SF_LAUNCHXL_freertos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/Kaito/Desktop/CCS/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug/freertos_builds_CC3220SF_LAUNCHXL_release_ccs.lib C:/Users/Kaito/Desktop/ECE\ 4534/Inter2/IntercomponentCommunication/Debug/mqtt_client_new.out
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
 	"C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me --define=SF_DEBUG__ -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"sensors_CC3220SF_LAUNCHXL_freertos_ccs.map" -i"C:/ti/simplelink_cc32xx_sdk_4_10_00_07/source" -i"C:/Users/Kaito/Desktop/CCS/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug" -i"C:/ti/ccs1000/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/lib" --diag_suppress=10063 --diag_wrap=off --display_error_number --warn_sections --xml_link_info="sensors_CC3220SF_LAUNCHXL_freertos_ccs_linkInfo.xml" --rom_model -o "sensors_CC3220SF_LAUNCHXL_freertos_ccs.out" $(ORDERED_OBJS)
@@ -188,6 +189,7 @@ post-build:
 .PHONY: all clean dependents
 .SECONDARY:
 C:/Users/Kaito/Desktop/CCS/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug/freertos_builds_CC3220SF_LAUNCHXL_release_ccs.lib:
+C:/Users/Kaito/Desktop/ECE\ 4534/Inter2/IntercomponentCommunication/Debug/mqtt_client_new.out:
 
 -include ../makefile.targets
 

@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>freertos_builds_CC3220SF_LAUNCHXL_release_ccs</project>
+		<project>mqtt_client_new</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

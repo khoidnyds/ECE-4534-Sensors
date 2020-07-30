@@ -113,6 +113,7 @@
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="freertos_builds_CC3220SF_LAUNCHXL_release_ccs;com.ti.ccstudio.buildDefinitions.TMS470.Debug.2012394481" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+				<externalSettings containerId="mqtt_client_new;com.ti.ccstudio.buildDefinitions.TMS470.Debug.889244746" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
 		</cconfiguration>
 	</storageModule>

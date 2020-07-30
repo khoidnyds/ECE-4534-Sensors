@@ -17,7 +17,6 @@
 #include "timerRGB.h"
 #include "debug_if.h"
 #include <sensors_queues.h>
-#include "uart_term.h"
 
 extern void *mainThread(void *arg0);
 

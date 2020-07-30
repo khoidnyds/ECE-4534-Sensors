@@ -134,7 +134,8 @@ void getTime(uint_least8_t index){
 
             newMsgUS.type = ultrasonic;
             int success = sendMsgToQueueUS(&newMsgUS);
-
+//            GPIO_write(CONFIG_GPIO_0,1);
+//            GPIO_write(CONFIG_GPIO_0,0);
             if(success==FAIL){
                 Message("\r\nSend US message failed");
                 while(1);

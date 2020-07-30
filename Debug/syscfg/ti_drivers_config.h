@@ -64,6 +64,9 @@ extern const uint_least8_t          US1_ECHO_CONST;
 /* P63 */
 extern const uint_least8_t          LIMIT_SWITCH_CONST;
 #define LIMIT_SWITCH                8
+/* P50 */
+extern const uint_least8_t          CONFIG_GPIO_0_CONST;
+#define CONFIG_GPIO_0               9
 
 /* LEDs are active high */
 #define CONFIG_GPIO_LED_ON  (1)

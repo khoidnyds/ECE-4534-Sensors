@@ -1,10 +1,3 @@
-/*
- * sensor_queue.h
- *
- *  Created on: Jun 14, 2020
- *      Author: Khoi Dang
- */
-
 #ifndef SENSOR_QUEUE_H
 #define SENSOR_QUEUE_H
 
@@ -13,6 +6,7 @@
 #include "uart_term.h"
 #include <stdio.h>
 
+#define QUEUESIZE 100
 
 extern QueueHandle_t xQueueUS;
 extern QueueHandle_t xQueueRGB;

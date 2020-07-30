@@ -1,7 +1,5 @@
 #include <sensors_queues.h>
 
-#define QUEUESIZE 300
-
 QueueHandle_t xQueueUS = NULL;
 QueueHandle_t xQueueRGB = NULL;
 QueueHandle_t xQueueSwitch = NULL;
@@ -38,7 +36,7 @@ int sendMsgToQueueUS(msgUS* inMsg){
 }
 
 int receiveMsgFromQueueUS(msgUS* outMsg){
-    BaseType_t result = xQueueReceive(xQueueUS, outMsg, portMAX_DELAY);
+    BaseType_t result = xQueueReceiveFromISR(xQueueUS, outMsg, pdFALSE);
     if (result != pdPASS){
         //dbgOutputLoc(DLOC_MESSAGE_US_RECEIVE_FAIL);
         return -1;
@@ -59,7 +57,7 @@ int sendMsgToQueueRGB(msgRGB* inMsg){
 }
 
 int receiveMsgFromQueueRGB(msgRGB* outMsg){
-    BaseType_t result = xQueueReceive(xQueueRGB, outMsg, portMAX_DELAY);
+    BaseType_t result = xQueueReceiveFromISR(xQueueRGB, outMsg, pdFALSE);
     if (result != pdPASS){
         //dbgOutputLoc(DLOC_MESSAGE_RGB_RECEIVE_FAIL);
         return -1;
@@ -78,7 +76,7 @@ int sendMsgToQueueSwitch(msgSwitch* inMsg){
     return 0;
 }
 int receiveMsgFromQueueSwitch(msgSwitch* outMsg){
-    BaseType_t result = xQueueReceive(xQueueSwitch, outMsg, portMAX_DELAY);
+    BaseType_t result = xQueueReceiveFromISR(xQueueSwitch, outMsg, pdFALSE);
     if (result != pdPASS){
         //dbgOutputLoc(DLOC_MESSAGE_SWITCH_RECEIVE_FAIL);
         return -1;
